@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jona V | Portfolio</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Hero Section -->
+  <header class="hero">
+    <div class="hero-content">
+    <!-- ✅ Profile Image Section -->
+      <div class="hero-img" style="text-align:center; margin-top:20px;">
+        <img
+          id="profilePic"
+          alt="My Profile Picture"
+          class="profile-pic"
+          style="width:200px; height:200px; border-radius:50%; object-fit:cover; box-shadow:0 8px 20px rgba(0,0,0,.3);"
+        />
+      </div>
+    </div>
+  </header>
+      <h1>Hi, I'm <span>Jona V</span></h1>
+      <p>Aspiring : Artificial Intelligence </p>
+    </div>
+  </header>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <button onclick="showSection('about')">About</button>
+    <button onclick="showSection('skills')">Skills</button>
+    <button onclick="showSection('Achievements')">Achievements</button>
+    <button onclick="showSection('contact')">Contact</button>
+  </nav>
+  <!-- Sections (hidden by default) -->
+  <section id="about" class="hidden">
+    <h2>About Me</h2>
+    <p>I am a student at DRBCCC hindu College passionate about learning and building creative solutions. 
+       My interests include debugging and coding, and I aim to grow as a professional in Artificial Intelligence.</p>
+  </section>
+  <section id="skills" class="hidden">
+    <h2>Skills</h2>
+    <div class="skills-grid">
+      <div class="skill-card">HTML & CSS</div>
+      <div class="skill-card">JavaScript</div>
+      <div class="skill-card">Python / Java</div>
+      <div class="skill-card">Communication</div>
+    </div>
+  </section>
+  <section id="Achievements" class="hidden">
+    <h2>Achievements</h2>
+    <div class="projects-grid">
+      <div class="project-card">
+        <h3>Achievement 1</h3>
+        <p>I have done a project on smart home appliances dashboard using html.</p>
+      </div>
+      <div class="project-card">
+        <h3>Achievement 2</h3>
+        <p>I have done a project on data analytics.</p>
+      </div>
+    </div>
+  </section>
+  <section id="contact" class="hidden">
+    <h2>Contact Me</h2>
+    <form id="contactForm">
+      <input type="text" placeholder="Your Name" required>
+      <input type="email" placeholder="Your Email" required>
+      <textarea placeholder="Your Message" required></textarea>
+      <button type="submit">Send Message</button>
+    </form>
+    <p>Email: <a href="mailto:yourmail@email.com">jonaamutha@email.com</a></p>
+  </section>
+  <footer>
+    <p>© 2025 Jona V  | Built with 📱</p>
+  </footer>
+  <!-- ✅ Script to load Google Drive Image -->
+  <script>
+    // Put either your file ID or full Google Drive share link here
+    const DRIVE_INPUT = "1DTaV37rc66nBP3FdfYc1uyGIUsEGZf_B";
+    // Extract ID if full link was pasted
+    const id = (String(DRIVE_INPUT).match(/[-\w]{25,}/) || [String(DRIVE_INPUT).trim()])[0];
+    const candidates = [
+      `https://drive.google.com/uc?export=view&id=${id}`,
+      `https://drive.google.com/uc?export=download&id=${id}`,
+      `https://drive.usercontent.google.com/uc?id=${id}&export=download`,
+      `https://drive.google.com/thumbnail?id=${id}&sz=w2000`
+    ];
+      const img = document.getElementById("profilePic");
+    let i = 0;
+    function tryNext() {
+      if (i >= candidates.length) {
+        img.alt = "⚠️ Could not load image. Check Drive sharing settings.";
+        return;
+      }
+      const url = candidates[i++];
+      img.onerror = tryNext;
+      img.src = url;
+    }
+    tryNext();
+   </script>
+</body>
+</html>
