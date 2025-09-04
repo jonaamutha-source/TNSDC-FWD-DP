@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Jona V | Portfolio</title>
+
+  <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+  <!-- Hero Section -->
+
+  <header class="hero">
+
+    <div class="hero-content">
+
+      <!-- ✅ Profile Image Section -->
+
+      <div class="hero-img" style="text-align:center; margin-top:20px;">
+
+        <img
+
+          id="profilePic"
+
+          alt="My Profile Picture"
+
+          class="profile-pic"
+
+          style="width:200px; height:200px; border-radius:50%; object-fit:cover; box-shadow:0 8px 20px rgba(0,0,0,.3);"
+
+        />
+
+      </div>
+
+      <!-- ✅ Intro text -->
+
+      <h1>Hi, I'm <span>Jona V</span></h1>
+
+      <p>Aspiring : Artificial Intelligence</p>
+
+    </div>
+
+  </header>
+
+  <!-- Navigation -->
+
+  <nav class="navbar">
+
+    <button type="button" onclick="showSection('about')">About</button>
+
+    <button type="button" onclick="showSection('skills')">Skills</button>
+
+    <button type="button" onclick="showSection('achievements')">Achievements</button>
+
+    <button type="button" onclick="showSection('contact')">Contact</button>
+
+  </nav>
+
+  <!-- Sections (default hidden) -->
+
+  <section id="about">
+
+    <h2>About Me</h2>
+
+    <p>I am a student at DRBCCC Hindu College passionate about learning and building creative solutions. 
+
+       My interests include debugging and coding, and I aim to grow as a professional in Artificial Intelligence.</p>
+
+  </section>
+
+  <section id="skills">
+
+    <h2>Skills</h2>
+
+    <div class="skills-grid">
+
+      <div class="skill-card">HTML & CSS</div>
+
+      <div class="skill-card">JavaScript</div>
+
+      <div class="skill-card">Python / Java</div>
+
+      <div class="skill-card">Communication</div>
+
+    </div>
+
+  </section>
+
+  <section id="achievements">
+
+    <h2>Achievements</h2>
+
+    <div class="projects-grid">
+
+      <div class="project-card">
+
+        <h3>Achievement 1</h3>
+
+        <p>I have done a project on smart home appliances dashboard using HTML.</p>
+
+      </div>
+
+      <div class="project-card">
+
+        <h3>Achievement 2</h3>
+
+        <p>I have done a project on data analytics.</p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <section id="contact">
+
+    <h2>Contact Me</h2>
+
+    <form id="contactForm">
+
+      <input type="text" name="name" placeholder="Your Name" required>
+
+      <input type="email" name="email" placeholder="Your Email" required>
+
+      <textarea name="message" placeholder="Your Message" required></textarea>
+
+      <button type="submit">Send Message</button>
+
+    </form>
+
+    <p>Email: <a href="mailto:jonaamutha@email.com">jonaamutha@email.com</a></p>
+
+  </section>
+
+  <footer>
+
+    <p>© 2025 Jona V | Built with 📱</p>
+
+  </footer>
+
+  <!-- ✅ Script to load Google Drive Image -->
+
+  <script>
+
+    const DRIVE_INPUT = "1DTaV37rc66nBP3FdfYc1uyGIUsEGZf_B";
+
+    const id = (String(DRIVE_INPUT).match(/[-\w]{25,}/) || [String(DRIVE_INPUT).trim()])[0];
+
+    const candidates = [
+
+      `https://drive.google.com/uc?export=view&id=${id}`,
+
+      `https://drive.google.com/uc?export=download&id=${id}`,
+
+      `https://drive.usercontent.google.com/uc?id=${id}&export=download`,
+
+      `https://drive.google.com/thumbnail?id=${id}&sz=w2000`
+
+    ];
+
+    const img = document.getElementById("profilePic");
+
+    let i = 0;
+
+    function tryNext() {
+
+      if (i >= candidates.length) {
+
+        img.alt = "⚠️ Could not load image. Check Drive sharing settings.";
+
+        return;
+
+      }
+
+      const url = candidates[i++];
+
+      img.onerror = tryNext;
+
+      img.src = url;
+
+    }
+
+    tryNext();
+
+    // ✅ Section switching
+
+    function showSection(sectionId) {
+
+      document.querySelectorAll("section").forEach(sec => {
+
+        sec.classList.remove("active");
+
+      });
+
+      const section = document.getElementById(sectionId);
+
+      if (section) {
+
+        section.classList.add("active");
+
+      }
+
+    }
+
+    // ✅ Contact form alert
+
+    document.getElementById("contactForm").addEventListener("submit", function(e) {
+
+      e.preventDefault();
+
+      alert("✅ Thank you! Your message has been sent.");
+
+    });
+
+    // ✅ Show "About" by default when page loads
+
+    document.addEventListener("DOMContentLoaded", () => {
+
+      showSection("about");
+
+    });
+
+  </script>
+
+</body>
+
+</html>
